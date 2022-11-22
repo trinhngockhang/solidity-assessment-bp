@@ -82,6 +82,7 @@ contract Pool is
         _priceNft = 100;
         DOMINATOR = 100;
         RATE_TO_MINT_NFT = 30;
+        REFUND_RATE = 30;
 
         // Init param for Chainlink VRF contract
         callbackGasLimit = 1720000;
@@ -102,7 +103,7 @@ contract Pool is
     function setGasCallbackLimit(uint32 maxGas_) public onlyOwner {
         callbackGasLimit = maxGas_;
     }
-
+    
     /**
      * Update new price when user request mint NFT
      * @param priceNft_ new price of NFT
@@ -205,10 +206,10 @@ contract Pool is
         // burn before refund to avoid reentrancy
         _burn(tokenId_);
 
-        uint256 refundAmount = _tokenMintedPrice[tokenId_];
+        // Does not need safe math since using solidity 0.8+
+        uint256 refundAmount = (_tokenMintedPrice[tokenId_] * REFUND_RATE) / DOMINATOR;
         require(address(this).balance > refundAmount);
 
-        // Does not need safe math since using solidity 0.8+
-        receiver_.transfer((refundAmount * REFUND_RATE) / DOMINATOR);
+        receiver_.transfer(refundAmount);
     }
 }

@@ -47,4 +47,4 @@ If user want to refund, they could use `refund` function to request refund
 Admin could change the price of NFT by function `setPriceNft`
 # 4. Deployed contract
 
-Sample contract is deployed in goerli network: https://goerli.etherscan.io/address/0x1f02919354e24E62c51b758E3bd25E3eBF20952c
+Sample contract is deployed in goerli network: https://goerli.etherscan.io/address/0x10a636CEE00Bf96895a7fec7a84a21e247cF9Bd5

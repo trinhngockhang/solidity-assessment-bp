@@ -2,7 +2,7 @@ const hre = require("hardhat");
 require("@nomiclabs/hardhat-web3");
 require('@openzeppelin/hardhat-upgrades');
 
-const OLDPROXY = '';
+const OLDPROXY = '0x25ee2417a26a6d5b0f25f9b084f42393812b0a68';
 async function main() {
   const chainId = hre.network.config.chainId;
 
@@ -22,7 +22,6 @@ async function main() {
 
   const PoolContract = await ethers.getContractFactory('Pool');
   const instance = await hre.upgrades.deployProxy(PoolContract, [owner.address, subscriptionId[chainId], vrfCoordinator[chainId], sKeyHash[chainId]], { initializer: 'initialize' });
-
   await instance.deployed();
   console.log("PoolContract deployed to:", instance.address)
  
@@ -34,7 +33,7 @@ async function main() {
   
   // Verify implementation contract
   // await hre.run("verify:verify", {
-  //   address: "0xdbdc9a68fa1fb66ac14f82afe0b74f23b249672b",
+  //   address: "0x25ee2417a26a6d5b0f25f9b084f42393812b0a68",
   //   constructorArguments: [],
   // });
 }

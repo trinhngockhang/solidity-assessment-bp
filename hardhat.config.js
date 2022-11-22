@@ -23,7 +23,7 @@ module.exports = {
       chainId: 5
     },
     rinkeby: {
-      url: "https://eth-rinkeby.alchemyapi.io/v2/fFFq7Li2PblxpKzAu8Gw3NY-EEyUAClg",
+      url: "https://eth-rinkeby.alchemyapi.io/v2/" + ALCHEMY_KEY,
       accounts: GOERLI_ACCOUNTS,
     },
     bsc_testnet: {
